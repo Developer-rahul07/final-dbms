@@ -1,5 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const express = require('express');
+const cookieParser = require("cookie-parser");
+var jwt = require('jsonwebtoken');
 
 
 let db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) => {
@@ -13,14 +15,41 @@ let db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) => 
 
 
 const addUser = (req, res) => {
-    console.log("checking  createuser----------------------11");
     var name = req.body.username;
     var empid = req.body.empid;
     var userid = req.body.userid;
     var password = req.body.password;
-    console.log("checking  createuser----------------------22");
+    var cUser = req.body.createUser;
+    var dUser = req.body.deleteUser;
+    var upload = req.body.upload;
+    var indexpdf = req.body.indexpdf;
+    var exclRep = req.body.exclRep;
+    var editpdf = req.body.editpdf;
+    var delpdf = req.body.delpdf;
 
-    db.run(`INSERT INTO mytable(name,empid,userid,password) VALUES(?,?,?,?)`, [name, empid, userid, password], function (err) {
+    if (cUser != '1') {
+        cUser = "0";
+    }
+    if (dUser != '1') {
+        dUser = "0";
+    }
+    if (upload != '1') {
+        upload = "0";
+    }
+    if (indexpdf != '1') {
+        indexpdf = "0";
+    }
+    if (exclRep != '1') {
+        exclRep = "0";
+    }
+    if (editpdf != '1') {
+        editpdf = "0";
+    }
+    if (delpdf != '1') {
+        delpdf = "0";
+    }
+
+    db.run(`INSERT INTO mytable(name,empid,userid,password,cUser,dUser,upload,indexpdf,exclRep,editpdf,delpdf,delpdf) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`, [name, empid, userid, password, cUser, dUser, upload, indexpdf, exclRep, editpdf, delpdf, delpdf], function (err) {
         if (err) {
             return console.log(err.message);
         }
@@ -30,55 +59,45 @@ const addUser = (req, res) => {
     res.redirect('/login');
 }
 
-const table = (req, res) => {
-    var list = req.query.list;
-    var index = req.query.index;
+// const table = (req, res) => {
+//     var list = req.query.list;
+//     var index = req.query.index;
 
-    console.log("list is running-----------------------",list);
-    console.log("index is running-----------------------",index);
+//     console.log("list is running-----------------------",list);
+//     console.log("index is running-----------------------",index);
 
-    //for creating coloum inside list
-    // db.run(`ALTER TABLE ${list} ADD ${index}`);
+//     //for creating coloum inside list
+//     // db.run(`ALTER TABLE ${list} ADD ${index}`);
 
-    //getting data from List table
-    db.all(`SELECT * FROM List`, (error, row) => {
-        if (error) {
-            console.log("erorrrr in table--userController----",error);
-        }
-        // console.log("list row is-------",row);
-        // res.render('tables',{values:row})
+//     //getting data from List table
+//     db.all(`SELECT * FROM List`, (error, row) => {
+//         if (error) {
+//             console.log("erorrrr in table--userController----",error);
+//         }
+//         // console.log("list row is-------",row);
+//         // res.render('tables',{values:row})
 
-        db.all(`SELECT * FROM addIndex`, (error, addIndexData) => {
-            if (error) {
-                console.log("erorrrr in table--userController----",error);
-            }
-            // console.log("addIndex row is-------",addIndexData);
+//         db.all(`SELECT * FROM addIndex`, (error, addIndexData) => {
+//             if (error) {
+//                 console.log("erorrrr in table--userController----",error);
+//             }
+//             // console.log("addIndex row is-------",addIndexData);
 
-            let rowValues = {
-                listData : row,
-                indexData : addIndexData
-            }
+//             let rowValues = {
+//                 listData : row,
+//                 indexData : addIndexData
+//             }
 
 
-            res.render('tables',{recipes: rowValues})
+//             res.render('tables',{recipes: rowValues})
     
-        });
-    });
+//         });
+//     });
+// }
 
-        //getting data from addIndex table
-    // db.all(`SELECT * FROM addIndex`, (error, addIndexData) => {
-    //     if (error) {
-    //         console.log("erorrrr in table--userController----",error);
-    //     }
-    //     console.log("addIndex row is-------",addIndexData);
-    //     res.render('tables',{indexs:addIndexData})
-
-    // });
-
-}
 
 const Home = (req, res) => {
-    console.log("Home is==================-------");
+    // console.log("Home is==================-------");
     // const value = req.query.name;
     // console.log("home name value is-------",value);
 
@@ -117,8 +136,11 @@ const pdfView = (req, res) => {
 
 
 const loginUser = (req, res) => {
+
     var name = req.body.username;
     var password = req.body.password;
+
+    console.log(name + " " + password);
 
     let errors = [];
 
@@ -133,10 +155,23 @@ const loginUser = (req, res) => {
     }
     else {
         db.each(`SELECT * FROM mytable WHERE name = ? `, name, (err, row) => {
-
+           
             if (row.password === password) {
-                console.log("user Logged in")
-                res.redirect('/');
+                console.log("user Logged in");
+                var token = jwt.sign(
+                    {
+                       name:row.name,
+                       empid:row.empid
+                    }, 
+                    'secret',
+                    {
+                        expiresIn:"1h"
+                    })
+            
+                    console.log(token);
+                    res.cookie('jwt',token, { httpOnly: true, secure: true, maxAge: 3600000 })
+                    res.render("Admin",{token:token});
+                    // res.status(200).json({message:"ok",token:token})
             }
             else {
                 errors.push({ msg: 'Invalid Password' })
@@ -149,14 +184,29 @@ const loginUser = (req, res) => {
 }
 
 
-const deleteUser = async (req,res,next) => {
-    const id = req.params.id;
+const deleteUser = (req, res) => {
+
+    const id = req.params.sn;
+
+    db.run(`DELETE FROM mytable WHERE sn = ?`, [id], function (error) {
+        if (error) {
+            return console.error(error.message);
+        }
+        res.render('Admin');
+    });
+
 }
 
-const getAlluser = async (req,res) => {
-    db.all("SELECT * FROM mytable", function(err, rows) {
+
+const getAlluser = async (req, res, next) => {
+    db.all("SELECT * FROM mytable", function (err, rows) {
+        if (err) {
+            console.log(err);
+        }
+        // console.log(rows);
         res.render('Alluser', {data:rows})
-       });
+        // res.status(200).json(rows);
+    });
 }
 
 
@@ -186,11 +236,11 @@ const listUser = (req, res) => {
 
 
         let object = Object.assign({}, ...row)
-        console.log("object is --------------", object);
-        console.log("object is --------------", object.name == name);
+        // console.log("object is --------------", object);
+        // console.log("object is --------------", object.name == name);
 
         if(object.name == name){
-        console.log("inside if-----");
+        // console.log("inside if-----");
         //make alert section
         res.redirect('/list')
         
@@ -291,43 +341,70 @@ const pdfPath = (req, res) => {
 }
 
 
+const updateUser = (req, res) => {
+    const sn = req.params.sn;
+    var name = req.body.username;
+    var empid = req.body.empid;
+    var userid = req.body.userid;
+    var password = req.body.password;
+    var cUser = req.body.createUser;
+    var dUser = req.body.deleteUser;
+    var upload = req.body.upload;
+    var indexpdf = req.body.indexpdf;
+    var exclRep = req.body.exclRep;
+    var editpdf = req.body.editpdf;
+    var delpdf = req.body.delpdf;
+
+    if (cUser != '1') {
+        cUser = "0";
+    }
+    if (dUser != '1') {
+        dUser = "0";
+    }
+    if (upload != '1') {
+        upload = "0";
+    }
+    if (indexpdf != '1') {
+        indexpdf = "0";
+    }
+    if (exclRep != '1') {
+        exclRep = "0";
+    }
+    if (editpdf != '1') {
+        editpdf = "0";
+    }
+    if (delpdf != '1') {
+        delpdf = "0";
+    }
+
+    db.run(
+        `UPDATE mytable SET name = ?, empid = ?, userid = ?, password = ?, cUser = ?, dUser = ?,upload = ?,indexpdf = ?,exclRep = ?,editpdf = ?,delpdf = ? WHERE sn = ?`,
+        [name, empid, userid, password, cUser, dUser, upload, indexpdf, exclRep, editpdf, delpdf, sn],
+        function (error) {
+            if (error) {
+                console.error(error.message);
+            }
+        }
+    );
+    res.render('Admin');
+}
 
 
 
 
 
+
+exports.addUser = addUser;
 exports.Home = Home;
 exports.home_1 = home_1;
 exports.pdfView = pdfView;
-exports.addUser = addUser;
 exports.loginUser = loginUser;
 exports.deleteUser = deleteUser;
+exports.updateUser = updateUser;
 exports.getAlluser = getAlluser;
 exports.listUser = listUser;
 exports.pdfPath = pdfPath;
-exports.table = table;
+// exports.table = table;
 
 
 
-// db.each(`SELECT * FROM mytable WHERE name = ? `, name, (err, row) => {
-
-//     if(row.name != name ){
-//         console.log("user nahi h");
-//         errors.push({ msg: 'User not registered'})
-//         res.render('Login', {
-//             errors
-//         })
-//     }
-//     else{
-//         if (row.password === password) {
-//             console.log("user Logged in")
-//             res.redirect('/');
-//         }
-//         else {
-//             errors.push({ msg: 'Invalid Password'})
-//             res.render('Login', {
-//                 errors,name
-//             })
-//         }
-//     }
-// })
