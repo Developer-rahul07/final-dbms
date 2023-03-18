@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Management</title>
+    <link href="../assets/admin.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include('./public/Navbar.ejs') %>
+    <div class="container">
+
+                 <% homes.forEach(function(item){ %>
+                    <!-- <h1> <%= item.name %> </h1> -->
+
+                    
+                    <form action="/home_1" method="get"> 
+
+                        <button id="name" name="name" value="<%= item.name %>" >
+                            <img src="../assets/public/folderIcon.png" alt="folderImg"  >
+                            
+                        </button> <%= item.name %> <br><br> 
+
+                        <!-- <img src="../assets/public/folderIcon.png" alt="folderImg" id="name" name="name" value="<%= item.name %>" >
+
+                                <div class="text-center">
+                                    
+                                    <input type="submit" class="form-control" id="name" name="name" value="<%= item.name %>"
+                                            placeholder="name" >
+                                </div>  <br> -->
+
+                    </form>
+
+
+
+                 <% })          
+                 %>
+     
+
+    </div>
+</body>
+
+</html>

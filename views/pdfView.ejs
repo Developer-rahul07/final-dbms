@@ -10,18 +10,22 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 </head>
 
 <body>
     <%- include('./public/Navbar.ejs') %>
-        <div class="container">
-            <a class="btn btn-primary m-2" href="/createuser" role="button">Create User</a>
-            <a class="btn btn-primary m-2" href="#" role="button">Delete User</a>
-            <a class="btn btn-primary m-2" href="#" role="button">Update User</a>
-            <a class="btn btn-primary m-2" href="/list" role="button">Add List</a>
-            <a class="btn btn-primary m-2" href="/pdfPath" role="button">Add Path</a>
-            <a class="btn btn-primary m-2" href="/table" role="button">Add Index to List</a>
-        </div>
+    <div class="container">
+      
+
+        
+
+        <embed src="<%= pdfPaths %>" width="100%" height="976" type="application/pdf">
+
+
+
+
+    </div>
 </body>
 
 </html>

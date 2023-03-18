@@ -6,11 +6,9 @@ const app = express();
 //view engine
 app.set('view engine','ejs');
 app.use('/assets', express.static('assets'));
-const cookieParser = require("cookie-parser");
+
 
 const port = process.env.PORT || 4000;
-
-app.use(cookieParser());
 
 
 //Middleare

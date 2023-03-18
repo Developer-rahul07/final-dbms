@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Management</title>
+    <link href="../assets/admin.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include('./public/Navbar.ejs') %>
+    <div class="container">
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordred table-striped">
+
+                <thead>
+                    <th>SR NO</th>
+                    <th>FILE NAME</th>
+                    <th>YEAR</th>
+                    <th>CODE</th>
+                    <th>TALUK</th>
+                    <th>HOBLI</th>
+                    <th>VILLAGE</th>
+                    <th>SURVEY NUMBER</th>
+                </thead>
+                <tbody>
+
+                    <% home_1.forEach(function(item){ %>
+                        <tr>
+                            <td>
+                                <%= item.SRNO %>
+                            </td>
+                            <td>
+                                <%= item.FILENAME %>
+                            </td>
+                            <td>
+                                <%= item.YEAR %>
+                            </td>
+                            <td>
+                                <%= item.CODE %>
+                            </td>
+                            <td>
+                                <%= item.TALUK %>
+                            </td>
+                            <td>
+                                <%= item.HOBLI %>
+                            </td>
+                            <td>
+                                <%= item.VILLAGE %>
+                            </td>
+                            <td>
+                                <%= item.SURVEYNUMBER %>
+                            </td>
+                            <td>
+                                <a href="/edit/<%= item.sn %>">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                        Update
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/<%= item.sn %>">
+                                    <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#exampleModalCenter">
+                                            Delete
+                                        </button>
+                                    </p>
+                                </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <a href="../public/ravi.pdf"> ravis Pdf</a>
+        <a href="../public/savi.pdf"> ravis Pdf</a>
+
+        
+
+    </div>
+</body>
+
+</html>
