@@ -13,27 +13,36 @@
 </head>
 
 <body>
+    <%- include('./public/loader.ejs') %>
+
     <%- include('./public/Navbar.ejs') %>
-    <div class="container">
+    <div class="container ">
+    <div class="row">
 
-                 <% homes.forEach(function(item){ %>
+        
+        <div >
+        <% homes.forEach(function(item){ %>
+            
+                    <form action="/listviewpage" method="get"> 
 
-                    
-                    <form action="/home_1" method="get"> 
-
-                        <button id="name" name="name" value="<%= item.name %>" >
+                       <div class="col-lg-6 col-md-6 col-sm-6"> <button id="name" name="name" value="<%= item.name %>" >
                             <img src="../assets/public/folderIcon.png" alt="folderImg"  >
                             
-                        </button> <%= item.name %> <br><br> 
+                        </button> 
+                    </div>
+                        
+                        <%= item.name %> <br><br> 
 
                     </form>
 
-
-
+                    
                  <% })          
                  %>
+                </div>
      
 
+    </div>
+  
     </div>
 </body>
 

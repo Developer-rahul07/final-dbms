@@ -107,14 +107,14 @@ const Home = (req, res) => {
             console.log("erorrrr in table--userController----",error);
         }
         console.log("list row is-------",rows);
-        res.render('Home', { homes:rows })
+        res.render('Home', { homes : rows })
     });
 }
 
-const home_1 = (req, res) => {
+const listviewpage = (req, res) => {
 
     const indexName = req.query.name;
-    console.log("home_1 hi hu name value is-------",indexName);
+    console.log("listviewpage hi hu name value is-------",indexName);
 
     //getting data from List table
     db.all(`SELECT * FROM ${indexName}`, (error, row) => {
@@ -123,8 +123,28 @@ const home_1 = (req, res) => {
         if (error) {
             console.log("erorrrr in table--userController----",error);
         }
-        console.log("home_1 row is-------",row);
-        res.render('Home_1',{home_1:row})
+        console.log("listviewpage row is-------",row);
+        res.render('listviewpage',{listviewpage:row})
+
+    });
+}
+
+const deleteExcelRow = (req, res) => {
+
+    // const indexName = req.query.name;
+    const id = req.params.SRNO;
+    // console.log("deleteExcelRow hi hu name value is-------",indexName);
+
+    //getting data from List table
+    // db.all(`DELETE FROM ${indexName} WHERE SRNO = ?`, [id], (error, row) => {
+    db.all(`DELETE FROM indexvalue WHERE SRNO = ?`, [id], (error, row) => {
+ 
+        if (error) {
+            console.log("erorrrr in table--userController----",error);
+        }
+        console.log("excel row is deleted...");
+        // res.redirect('/')
+        // res.send(`Row ${id} is deleted successfullly!`)
 
     });
 }
@@ -156,7 +176,7 @@ const loginUser = (req, res) => {
     else {
         db.each(`SELECT * FROM mytable WHERE name = ? `, name, (err, row) => {
            
-            if (row.password === password) {
+            if (row.password === password && row.name === name ) {
                 console.log("user Logged in");
                 var token = jwt.sign(
                     {
@@ -170,11 +190,11 @@ const loginUser = (req, res) => {
             
                     console.log(token);
                     res.cookie('jwt',token, { httpOnly: true, secure: true, maxAge: 3600000 })
-                    res.render("Admin",{token:token});
+                    res.render("welcomepage",{token:token});
                     // res.status(200).json({message:"ok",token:token})
             }
             else {
-                errors.push({ msg: 'Invalid Password' })
+                errors.push({ msg: 'Invalid Credentials!' })
                 res.render('Login', {
                     errors, name
                 })
@@ -396,7 +416,8 @@ const updateUser = (req, res) => {
 
 exports.addUser = addUser;
 exports.Home = Home;
-exports.home_1 = home_1;
+exports.listviewpage = listviewpage;
+exports.deleteExcelRow = deleteExcelRow;
 exports.pdfView = pdfView;
 exports.loginUser = loginUser;
 exports.deleteUser = deleteUser;
