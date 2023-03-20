@@ -230,6 +230,51 @@ const getAlluser = async (req, res, next) => {
 }
 
 
+const deleteList = async (req, res, next) => {
+    db.all("SELECT * FROM List", function (err, rows) {
+        if (err) {
+            console.log(err);
+        }
+        // console.log(rows);
+        res.render('deleteList', {listData:rows})
+    });
+}
+
+
+const deleteListSerialNumber = (req, res) => {
+
+    const id = req.params.sn;
+    console.log("deleteListSerialNumber id is---------",id);
+
+
+   
+    db.each(`SELECT * FROM List WHERE sn = ?`,[id], (error, row) => {
+        if (error) {
+            console.log("deleteListSerialNumber error-------------",error);
+        }
+        console.log("deleteListSerialNumber select One-----",row);
+
+        // `DROP TABLE row.name`;
+        // db.run(`DROP TABLE  ?`, [row.name]);
+
+      
+        
+    });
+    
+    
+    
+    
+    db.run(`DELETE FROM List WHERE sn = ?`, [id], function (error) {
+        if (error) {
+            return console.error(error.message);
+        }
+        // res.render('deleteList');
+        console.log("deleteListSerialNumber list is deleted-----");
+    });
+    
+}
+
+
 // code for list 
 
 const listUser = (req, res) => {
@@ -423,6 +468,8 @@ exports.loginUser = loginUser;
 exports.deleteUser = deleteUser;
 exports.updateUser = updateUser;
 exports.getAlluser = getAlluser;
+exports.deleteList = deleteList;
+exports.deleteListSerialNumber = deleteListSerialNumber;
 exports.listUser = listUser;
 exports.pdfPath = pdfPath;
 // exports.table = table;

@@ -23,6 +23,11 @@ router.get('/pdfPath', checkAuth, (req, res) => {
 router.post('/pdfPath', userController.pdfPath);
 
 
+router.get('/deleteList', checkAuth ,userController.deleteList)
+
+router.get('/deleteList/:sn', checkAuth ,userController.deleteListSerialNumber)
+
+
 
 // router.get('/', (req, res) => {
     // res.render('Home');
