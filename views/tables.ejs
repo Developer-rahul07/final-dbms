@@ -13,44 +13,50 @@
         integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 
-<body>
+<body style="background-color:lightblue;">
     <%- include('./public/Navbar.ejs') %>
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6 pb-5">
-                  
+
                     <div class="dropdown">
-                        <form action="/table" method="get"  >
-                            
+                        <form action="/table" method="get">
+
                             <label for="list">Choose a List:</label>
                             <select name="list" id="list">
-                                <%if (recipes.listData.length > 0) { %>
+                                <%if (recipes.listData.length> 0) { %>
                                     <% recipes.listData.forEach(function(item){ %>
-                                        <h1><%= item.name %></h1>
-                                        <option value=<%= item.name %> ><%= item.name %></option>
-                                   <% }) %>                      
-                                   <% } %>
-                                </select>            
-                                <br>
-                
-                            
+                                        <h1>
+                                            <%= item.name %>
+                                        </h1>
+                                        <option value=<%=item.name %> ><%= item.name %>
+                                        </option>
+                                        <% }) %>
+                                            <% } %>
+                            </select>
+                            <br>
+
+
                             <label for="index">Choose a Index:</label>
                             <select name="index" id="index">
-                                <%if (recipes.listData.length > 0) { %>
+                                <%if (recipes.listData.length> 0) { %>
                                     <% recipes.indexData.forEach(function(item){ %>
-                                        <h1><%= item.name %></h1>
-                                        <option value=<%= item.name %> ><%= item.name %></option>
-                                   <% }) %>                      
-                                   <% } %>
-                                </select>            
-                                <br>
-                
+                                        <h1>
+                                            <%= item.name %>
+                                        </h1>
+                                        <option value=<%=item.name %> ><%= item.name %>
+                                        </option>
+                                        <% }) %>
+                                            <% } %>
+                            </select>
+                            <br>
 
-                        <button type="submit">Submit</button>
-                    </form>
+
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 </body>
 
 </html>

@@ -7,29 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Database Management</title>
     <link id="visible" href="../assets/admin.css" rel="stylesheet">
-    <link id="visible" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color:lightblue;">
     <%- include('./public/Navbar.ejs') %>
         <div class="container">
             <div class="block p-3">
-                <a class="btn btn-primary m-1" id="visible0" href="/createuser" role="button">Create User</a>
-                <a class="btn btn-primary m-1" id="visible1" href="/delete&update" role="button">Delete & Update User</a>
-                <a class="btn btn-primary m-1" id="visible1" href="/pdfPath" role="button">Add Path</a>
+                <a class="btn btn-primary m-1" id="visible<%= permission.cUser %>" href="/createuser" role="button"
+                    style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">Create
+                    User</a>
+                <a class="btn btn-primary m-1" id="visible<%= permission.updateUser %>" href="/alluser" role="button"
+                    style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">Update
+                    User</a>
+                <a class="btn btn-primary m-1" id="visible<%= permission.delUser %>" href="/alluser" role="button"
+                    style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">Delete
+                    User</a>
             </div>
             <div class="block p-3">
-                <a class="btn btn-primary m-1" id="visible0" href="/list" role="button">Add List</a>
-                <a class="btn btn-primary m-1" id="visible0" href="/deleteList" role="button">Delete List</a>
-                <!-- <a class="btn btn-primary m-1" id="visible1" href="#" role="button">Update User</a> -->
+                <a class="btn btn-primary m-1" id="visible<%= permission.addList %>" href="/list" role="button"
+                    style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">Add
+                    List</a>
+                <a class="btn btn-primary m-1" id="visible<%= permission.delList %>" href="/alllist" role="button"
+                    style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">Delete
+                    List</a>
+                <a class="btn btn-primary m-1" id="visible<%= permission.addEntry %>" href="/addentyInfo" role="button"
+                    style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">Add
+                    Entry</a>
+                <a class="btn btn-primary m-1" id="visible<%= permission.updateEntry %>" href="/excelinfo" role="button"
+                    style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">Update
+                    Entry</a>
             </div>
-            <!-- <div class="block p-3">
-                <a class="btn btn-primary m-1" id="visible0" href="#" role="button">Index Pdf</a>
-                <a class="btn btn-primary m-1" id="visible0" href="#" role="button">Excel Report</a>
-                <a class="btn btn-primary m-1" id="visible0" href="#" role="button">Edit Pdf</a>
-            </div> -->
         </div>
 </body>
 

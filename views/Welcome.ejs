@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Data Management</title>
+   <!-- bootstrap css -->
+   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+   <!-- style css -->
+   <link rel="stylesheet" href="../assets/welcome.css">
+</head>
+<!-- body -->
+
+<body class="main-layout" style="background-color:lightblue;">
+   <!-- loader  -->
+   <%- include('./public/Navbar.ejs') %>
+
+      <!-- banner -->
+      <section class="banner_main">
+         <div id="banner1" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <div class="container">
+                     <div class="carousel-caption">
+                        <div class="row d_flex">
+                           <div class="col-md-6">
+                              <div class="text-bg">
+                                 <h1>We keep your records secure</h1>
+                                 <p>We are the best way to secure your documents</p>
+                                 <a href="/about">About More </a>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="text_img">
+                                 <figure>
+                                    <img src="../assets/public/1st_Image.jpg" alt="#" style="width:85%;" >
+                                    <h3>01</h3>
+                                 </figure>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- <div class="carousel-item">
+                  <div class="container">
+                     <div class="carousel-caption">
+                        <div class="row d_flex">
+                           <div class="col-md-6">
+                              <div class="text-bg">
+                                 <h1>Strategy And <br>Research</h1>
+                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                 <a href="#">About More </a>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="text_img">
+                                 <figure>
+                                    <img src="images/pct.png" alt="#"/>
+                                    <h3>01</h3>
+                                 </figure>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div> -->
+               <!--  <div class="carousel-item">
+                  <div class="container">
+                     <div class="carousel-caption">
+                        <div class="row d_flex">
+                           <div class="col-md-6">
+                              <div class="text-bg">
+                                 <h1>Strategy And <br>Research</h1>
+                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                 <a href="#">About More </a>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="text_img">
+                                 <figure>
+                                    <img src="images/pct.png" alt="#"/>
+                                    <h3>01</h3>
+                                 </figure>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div> -->
+               <!--  <div class="carousel-item">
+                  <div class="container">
+                     <div class="carousel-caption">
+                        <div class="row d_flex">
+                           <div class="col-md-6">
+                              <div class="text-bg">
+                                 <h1>Strategy And <br>Research</h1>
+                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                 <a href="#">About More </a>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="text_img">
+                                 <figure>
+                                    <img src="images/pct.png" alt="#"/>
+                                    <h3>01</h3>
+                                 </figure>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div> -->
+               <!--   <div class="carousel-item">
+                  <div class="container">
+                     <div class="carousel-caption">
+                        <div class="row d_flex">
+                           <div class="col-md-6">
+                              <div class="text-bg">
+                                 <h1>Strategy And <br>Research</h1>
+                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                 <a href="#">About More </a>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="text_img">
+                                 <figure>
+                                    <img src="images/pct.png" alt="#"/>
+                                    <h3>01</h3>
+                                 </figure>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div> -->
+            </div>
+            <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
+               <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </a>
+            <a class="carousel-control-next" href="#banner1" role="button" data-slide="next">
+               <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+         </div>
+      </section>
+      <!-- end banner -->
+      <!-- team -->
+      <div class="team">
+         <div class="container">
+            <div class="row d_flex">
+               <div class="col-md-5">
+                  <div class="team_img">
+                     <figure><img src="../assets/public/sco.png" alt="#" /></figure>
+                  </div>
+               </div>
+               <div class="col-md-6 offset-md-1">
+                  <div class="titlepage">
+                     <h2>We Are The Leading Industry In Document Digitalization Solution</h2>
+                     <p>MNY E-Commerce & Safety Solutions Private Limited isa Bengaluru based company providing complete
+                        digital & IT services to the clients. Basically we are into Digitalisation of Documents and
+                        Software & Security Systems Installation Services.</p>
+                     <h3>PROJECTS COMPLETED</h3>
+                     <strong>116 <span class="yellow">+</span></strong>
+                     <!-- <a class="read_more" href="#"> Read More</a> -->
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- team -->
+         <!-- services -->
+         <div class="services my-2">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-10 offset-md-1">
+                     <div class="titlepage">
+                        <h2>Experience the best for safety of your records</h2>
+
+                     </div>
+                  </div>
+               </div>
+               <div class="row my-2">
+                  <div class="col-md-3 col-sm-6">
+                     <div class="bg-white shadow">
+                        <h3 class="p-4"> 9+ Years Of <br>Expereince </h3>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6">
+                     <div class="bg-white shadow">
+                        <h3 class="p-4"> 92% Customer Retention </h3>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6">
+                     <div class="bg-white shadow">
+                        <h3 class="p-4"> Latest Technology Equipment </h3>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6">
+                     <div class="bg-white shadow">
+                        <h3 class="p-4"> Experienced Security Staff </h3>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <!-- end services -->
+         <!-- New Ideas  section -->
+         <div class="ideas">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-10">
+                     <div class="titlepage">
+                        <h2>We manage records to new standards in a simple way</h2>
+
+                     </div>
+                  </div>
+               </div>
+               <div class="border_trbl mt-2">
+                  <div class="row">
+                     <div class="col-md-4">
+                        <div class="ideas_box">
+                           <img src="../assets/public/files_ar.png">
+                           <p>Archive</p>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="ideas_box">
+                           <img src="../assets/public/files.png">
+                           <p>File</p>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="ideas_box">
+                           <img src="../assets/public/scan.png">
+                           <p>Scan/Digitize</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="ideas">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-10">
+                  <div class="titlepage">
+                     <h2>Functionality</h2>
+
+                  </div>
+               </div>
+            </div>
+            <!-- <div class="border_trbl mt-2"> -->
+            <div class="row">
+               <div class="col-md-6 col-sm-12 col-lg-6">
+                  <div class="ideas_box">
+                     <img src="../assets/public/2nd_IMAGE.jpg">
+                     <!-- <p>Archive</p> -->
+                  </div>
+               </div>
+               <div class="col-md-6 col-sm-12 col-lg-6">
+                  <div class="ideas_box">
+                     <img src="../assets/public/3rd_IMAGE.png">
+                     <!-- <p>File</p> -->
+                  </div>
+               </div>
+               <!--  <div class="col-md-4">
+                        <div class="ideas_box">
+                           <img src="images/scan.png">
+                           <p>Scan/Digitize</p>
+                        </div>
+                     </div> -->
+            </div>
+            <!-- </div> -->
+         </div>
+      </div>
+      </div>
+      <!-- end New Ideas  section -->
+      <!-- testimonial -->
+      <!--  <div class="testimonial">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h2>Testimonial</h2>
+                     <p>labore et dolore magna aliqua. Ut enim ad minim veniam, quis </p>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-6 ">
+                  <div class="test_box margin_bottom">
+                     <p>psum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum </p>
+                     <div class="test_icon">
+                        <i><img src="images/cos.png" alt="#"/></i>
+                        <h4>Joans Mark <br> <span class="yellow">Call</span></h4>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="test_box">
+                     <p>psum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum </p>
+                     <div class="test_icon">
+                        <i><img src="images/cos.png" alt="#"/></i>
+                        <h4>Joans Mark <br> <span class="yellow">Call</span></h4>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div> -->
+      <!-- end testimonial -->
+      <!--  footer -->
+      <footer>
+         <div class="footer">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                     <img class="logo1" src="../assets/public/Logo.jpg" alt="#" style="width:150px; height: 80px" />
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                     <h3>Useful Link</h3>
+                     <ul class="link_menu">
+                        <li><a href="/welcome">Home</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/search">Search</a></li>
+                        <li><a href="/admin">Admin</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                     <h3>Contact Us</h3>
+                     <ul class="link_menu">
+                        <li><a href="#">mnydigitalindia@gmail.com</a></li>
+                        <li><a href="#">9461272400</a></li>
+                        <li><a href="#">Shop No. 2,No. 9,3rd Floor,Mataji Tower, Appaji Rao Lane, C.T. Street Cross,
+                              Nagarathpet, Bangalore - 560002</a></li>
+
+                     </ul>
+                  </div>
+                  <div class="col-md-8 offset-md-4 ">
+                     <form class="bottom_form">
+                        <h3>Newsletter</h3>
+                        <input class="enter" placeholder="Enter your email" type="text" name="Enter your email">
+                        <button class="sub_btn">subscribe</button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-10 offset-md-1">
+                        <p>© 2021 All Rights Reserved. Design by <a href="http://techiweb.in/"> Techiweb</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- end footer -->
+</body>
+
+</html>
